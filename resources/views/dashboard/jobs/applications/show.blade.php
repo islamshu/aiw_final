@@ -135,8 +135,6 @@
                     @endif
                 </div>
             </div>
-
-            {{-- الإجراءات --}}
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-light py-3">
                     <h5 class="fw-bold mb-0">

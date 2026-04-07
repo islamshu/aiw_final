@@ -186,18 +186,15 @@
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm">
                                         <a href="{{ route('dashboard.news.edit', $item) }}"
-                                            class="btn btn-small btn-outline-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-
+                                            class="btn btn-sm btn-info">تعديل</a>
                                         <form method="POST" action="{{ route('dashboard.news.destroy', $item) }}"
                                             class="d-inline">
                                             @csrf @method('DELETE')
-                                            <button class="btn btn-small btn-outline-danger"
-                                                onclick="return confirm('هل أنت متأكد من الحذف؟')">
-                                                <i class="fas fa-trash"></i>
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('حذف؟')">
+                                                حذف
                                             </button>
                                         </form>
+
                                     </div>
                                 </td>
                             </tr>

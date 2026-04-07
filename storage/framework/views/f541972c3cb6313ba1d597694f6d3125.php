@@ -187,19 +187,18 @@
                                 
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm">
-                                        <a href="<?php echo e(route('dashboard.news.edit', $item)); ?>"
-                                            class="btn btn-small btn-outline-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                          <a href="<?php echo e(route('dashboard.news.edit', $item)); ?>"
+           class="btn btn-sm btn-info">تعديل</a>
+                                       <form method="POST"
+              action="<?php echo e(route('dashboard.news.destroy', $item)); ?>"
+              class="d-inline">
+            <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
+            <button class="btn btn-sm btn-danger"
+                    onclick="return confirm('حذف؟')">
+                حذف
+            </button>
+        </form>
 
-                                        <form method="POST" action="<?php echo e(route('dashboard.news.destroy', $item)); ?>"
-                                            class="d-inline">
-                                            <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
-                                            <button class="btn btn-small btn-outline-danger"
-                                                onclick="return confirm('هل أنت متأكد من الحذف؟')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
                                     </div>
                                 </td>
                             </tr>

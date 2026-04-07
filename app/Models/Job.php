@@ -43,7 +43,7 @@ class Job extends Model
 
     public function isPublished(): bool
     {
-        $today = now()->toDateString();
+        $today = now()->startOfDay();
     
         return
             $this->publish_from <= $today &&

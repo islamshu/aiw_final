@@ -111,7 +111,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="<?php echo e(route(name: 'news.index')); ?>">
+                            <a class="dropdown-item" href="<?php echo e(route(name: 'dashboard.news.index')); ?>">
                                 <i class="la la-newspaper"></i>
                                 الاخبار
                             </a>

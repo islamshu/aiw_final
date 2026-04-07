@@ -311,6 +311,9 @@
                                 : 'Brief summary about you and why you fit this role' }}"
                             class="md:col-span-2 form-input p-3 rounded-xl"></textarea>
 
+                           {{ app()->getLocale() === 'ar'
+                                ? 'السيرة الذاتية'
+                                : 'CV' }}
                         <input type="file" name="cv" required class="md:col-span-2 form-input p-3 rounded-xl">
 
                         <div class="md:col-span-2 text-right mt-6">
