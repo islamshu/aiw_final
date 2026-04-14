@@ -28,6 +28,12 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'Storage link created!';
+});
 
 /*
 |--------------------------------------------------------------------------
