@@ -105,6 +105,7 @@
                         <i class="fas fa-file-pdf me-2"></i>
                         السيرة الذاتية
                     </h5>
+                    
                 </div>
                 <div class="card-body">
                     @if($application->cv_path)
