@@ -5,21 +5,41 @@ $latestNews = App\Models\News::where('is_active', true)
     ->orderByDesc('published_at')
     ->take(3)
     ->get();
+
 $count = App\Models\News::where('is_active', true)->count();
-
 @endphp
-@if($count > 0)
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-   
-        {{-- TITLE --}}
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-extrabold mb-2">
-                {{ app()->getLocale() === 'ar' ? 'آخر الاخبار' : 'Latest News' }}
 
+@if($count > 0)
+<section
+    class="py-20 relative"
+    style="background: var(--bg-color);"
+>
+    <div class="container mx-auto px-4">
+
+        {{-- TITLE --}}
+        <div class="text-center mb-16">
+            <h2
+                class="text-3xl md:text-4xl font-extrabold mb-3"
+                style="
+                    background: linear-gradient(
+                        135deg,
+                        var(--primary-color),
+                        var(--secondary-color)
+                    );
+                    -webkit-background-clip: text;
+                    color: transparent;
+                "
+            >
+                {{ app()->getLocale() === 'ar' ? 'آخر الأخبار' : 'Latest News' }}
             </h2>
-            <p class="text-gray-500">
-                {{ app()->getLocale() === 'ar' ? 'تابع أحدث المستجدات وأخبار الشركة' : 'Follow the latest updates and company news.' }}
+
+            <p
+                class="text-sm md:text-base"
+                style="color: color-mix(in srgb, var(--text-color) 70%, transparent);"
+            >
+                {{ app()->getLocale() === 'ar'
+                    ? 'تابع أحدث المستجدات وأخبار الشركة'
+                    : 'Follow the latest updates and company news.' }}
             </p>
         </div>
 
@@ -27,31 +47,57 @@ $count = App\Models\News::where('is_active', true)->count();
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             @foreach ($latestNews as $news)
-                <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+                <div
+                    class="rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                    style="
+                        background: #ffffff;
+                        border: 1px solid color-mix(in srgb, var(--primary-color) 15%, transparent);
+                    "
+                >
 
                     {{-- IMAGE --}}
                     <div class="h-48 overflow-hidden">
-                        <img src="{{ asset('storage/' . $news->image) }}" class="w-full h-full object-cover">
+                        <img
+                            src="{{ asset('storage/' . $news->image) }}"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105"
+                        >
                     </div>
 
                     {{-- CONTENT --}}
                     <div class="p-6">
-                        <span class="text-sm text-gray-400">
+
+                        <span
+                            class="text-xs"
+                            style="color: color-mix(in srgb, var(--text-color) 50%, transparent);"
+                        >
                             {{ $news->published_at->format('Y-m-d') }}
                         </span>
 
-                        <h3 class="font-bold text-lg mt-2 mb-3">
+                        <h3
+                            class="font-bold text-lg mt-2 mb-3"
+                            style="color: var(--text-color);"
+                        >
                             {{ $news->title }}
                         </h3>
 
-                        <p class="text-gray-600 text-sm mb-4">
+                        <p
+                            class="text-sm mb-4"
+                            style="color: color-mix(in srgb, var(--text-color) 75%, transparent);"
+                        >
                             {{ Str::limit($news->excerpt, 120) }}
                         </p>
 
-                        <a href="{{ route('news.show', $news) }}" class="text-primary font-semibold hover:underline">
+                        <a
+                            href="{{ route('news.show', $news) }}"
+                            class="font-semibold transition"
+                            style="color: var(--primary-color);"
+                            onmouseover="this.style.color='var(--secondary-color)'"
+                            onmouseout="this.style.color='var(--primary-color)'"
+                        >
                             {{ app()->getLocale() === 'ar' ? 'اقرأ المزيد' : 'Read More' }}
                             →
                         </a>
+
                     </div>
                 </div>
             @endforeach
@@ -59,19 +105,20 @@ $count = App\Models\News::where('is_active', true)->count();
         </div>
 
         {{-- VIEW ALL --}}
-        @if (get_general_value(key: 'news_enabled') && $count > count($latestNews))
-            <div class="text-center mt-16 fade-in">
-                <a href="{{ route('news.index') }}"
-                    class="inline-flex items-center gap-3 px-12 py-4 rounded-full font-bold text-white
-                       transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+        @if (get_general_value('news_enabled') && $count > count($latestNews))
+            <div class="text-center mt-16">
+                <a
+                    href="{{ route('news.index') }}"
+                    class="inline-flex items-center gap-3 px-10 py-3 rounded-full font-bold text-white transition-all duration-300 hover:scale-105"
                     style="
-                    background: linear-gradient(
-                        135deg,
-                        var(--primary-color),
-                        var(--secondary-color)
-                    );
-                ">
-                    {{ app()->getLocale() === 'ar' ? 'رؤية جميع الاخبار' : 'View All News' }}
+                        background: linear-gradient(
+                            135deg,
+                            var(--primary-color),
+                            var(--secondary-color)
+                        );
+                    "
+                >
+                    {{ app()->getLocale() === 'ar' ? 'عرض جميع الأخبار' : 'View All News' }}
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
